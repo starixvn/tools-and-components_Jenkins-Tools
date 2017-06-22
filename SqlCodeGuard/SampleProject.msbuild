@@ -1,0 +1,19 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+   <UsingTask AssemblyFile="SQLCodeGuard.MSBuild.dll" TaskName="SQLCodeGuard.MSBuild.CheckTSQL" />
+  
+   <PropertyGroup>
+      <OutputPath>c:\temp</OutputPath>
+   </PropertyGroup>
+
+   <Target Name="Release">
+     <CheckTSQL SourcePath="d:\Projects\SqlScripts" 
+                IncludeIssue="ALL;CGUNP" 
+                ExcludeIssue ="DEP023" 
+                OutFile="result.xml" 
+                Quiet ="true" 
+                TreatWarningsAsErrors="true"
+            		TreatIssueAsWarning = "SC001;SC002"
+                TreatIssueAsError ="CGUNP"
+                />
+   </Target>
+</Project>

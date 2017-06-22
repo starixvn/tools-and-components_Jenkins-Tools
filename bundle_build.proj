@@ -1,0 +1,34 @@
+﻿<Project ToolsVersion="4.0" DefaultTargets="Compile" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+
+    <TPath>$(MSBuildExtensionsPath)\ExtensionPack\4.0\MSBuild.ExtensionPack.tasks</TPath>
+
+    <TPath Condition="Exists('$(MSBuildExtensionsPath)\ExtensionPack\MSBuild.ExtensionPack.tasks')">
+      $(MSBuildExtensionsPath)\ExtensionPack\4.0\MSBuild.ExtensionPack.tasks
+    </TPath>
+    <Configuration>Debug</Configuration>
+    
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  
+  <Import Project="$(TPath)"/>
+
+
+  <ItemGroup>
+    <ProjectsToBuild Include="$(WORKSPACE)\**\*csproj"></ProjectsToBuild>
+    <AdditionalReferencePaths Include="$(WORKSPACE)\Dependency" />
+  </ItemGroup>
+
+  
+  <Target Name="Compile">
+    <PropertyGroup>
+      <AdditionalReferencePathsProp>@(AdditionalReferencePaths)</AdditionalReferencePathsProp>
+    </PropertyGroup>
+    <MSBuild Projects ="@(ProjectsToBuild)"
+             ContinueOnError ="true"
+	     Targets="Build"
+             Properties="ReferencePath=$(AdditionalReferencePathsProp);Configuration=$(Configuration)">
+    </MSBuild>
+  </Target>
+  
+</Project>

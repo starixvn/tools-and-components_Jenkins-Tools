@@ -1,0 +1,18 @@
+﻿ Q: I've installed SQL Code Guard but I'm unable to find SQL Code Guard Checkin Policy and have no idea how to use it
+ A: 
+ After installing SCG you should manually register policy by running "devenv /setup"  (http://msdn.microsoft.com/en-us/library/ex6a2fad%28v=vs.110%29.aspx)
+	Forces Visual Studio to merge the resource metadata that describes menus, toolbars, and command groups, from all available VSPackages.
+	This switch takes no arguments. The devenv /setup command is typically given as the last step of the installation process. Use of the /setup switch does not start Visual Studio.
+	You must run devenv as an administrator in order to use the /Setup (devenv.exe) and /InstallVSTemplates (devenv.exe) switches.
+
+Also it would be nice to read how to add check-in policies to Team Project (http://msdn.microsoft.com/en-us/library/ms181459%28v=vs.100%29.aspx)
+	Administrators of Team Foundation version control can add check-in policy requirements. These check-in policies require the user to take actions when they conduct a check-in to source control, for example a user can be required to associate a work item with a changeset. For more information about check-ins, see Check In Pending Changes. By default, the following check-in policy types are available:
+
+Procedure
+	To create a check-in policy
+		From Team Explorer, right-click your team project, click Team Project Settings, and then click Source Control.
+			The Source Control Settings dialog box appears.
+		Click the Check-in Policy tab and then click Add.
+			The Add Check-in Policy dialog box appears.
+		In the Check-in Policy list, select the policy type you want and then click OK.
+		When you are satisfied with the settings for the check-in policies, click OK; the new check-in policy now displays with future check-ins.
