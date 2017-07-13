@@ -1,5 +1,5 @@
 ﻿$rootFolder = "\\fileserver\bk_nexcel\1-WINDOWS_SERVER\Web_Servers\Server104\JenkinsBackup"
-$backupFolders = dir -Directory $rootFolder | Sort-Object -Descending LastWriteTime
+$backupFolders = dir -Directory $rootFolder | Sort-Object -Descending Name
 
 for($i=0;$i -lt $backupFolders.Count;$i++){
     #Keep 3 latest backup folders
