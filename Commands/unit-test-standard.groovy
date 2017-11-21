@@ -15,7 +15,7 @@ class UnitTestRunner{
 	
     public UnitTestRunner(def rootPath){
         this.rootPath = rootPath;
-		this.nunitConsoleLocation = "D:\\Jenkins\\tools\\NUnit-3.0.1\\bin\\nunit3-console.exe";
+		this.nunitConsoleLocation = "D:\\Jenkins\\tools\\NUnit\\nunit3-console.exe";
     }
 	
 	public debug(){
