@@ -125,16 +125,10 @@ class TestCoverageRunner{
 			}				
 		}
 		
-		def parentDir = file.getParentFile().name;
-		def potential = file.name.endsWith("Tests.dll") && (parentDir == "debug" || parentDir =="Debug") && !file.path.contains("\\obj\\");
-		if(potential) {
-			def nameWithoutExtention = file.name.lastIndexOf('.').with {it != -1 ? file.name[0..<it] : file.name};		
-			def projectName = file.getParentFile().getParentFile().getParentFile().getName();
-			
-			if(nameWithoutExtention == projectName){
-				list << file.getPath();	
-			}   				
-		}
+		def matched = file.name.endsWith("Tests.dll") && !file.path.contains("\\obj\\");
+		if(matched){
+			list << file.path;	
+		} 	
 	}
 	
 	private runCommand(def command){
