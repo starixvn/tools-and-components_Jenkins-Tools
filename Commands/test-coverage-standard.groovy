@@ -32,7 +32,7 @@ class TestCoverageRunner{
 			nunitConsoleLocation +
 			" -targetargs:\"" +
 			files +
-			"\" -filter:+[*]* -output:\"" +
+			" /result:\"\"" + rootPath + "\\UnitTest.xml;format=nunit2\"\" \" -filter:+[*]* -output:\"" +
 			rootPath +
 			"\\coverage.xml\"";
 		return openCoverCommand;
