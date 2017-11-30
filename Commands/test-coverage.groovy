@@ -2,13 +2,8 @@
 class ScriptExecutor {
     
     public static void main(String[] args) {
-        String excludeFilter = "";
-		
-		if(args.size() > 1){
-			excludeFilter = args[1];
-		}
-		
-        def runner = new TestCoverageRunner(args[0],excludeFilter);
+        
+        def runner = new TestCoverageRunner(args[0]);
 		runner.run();
     }
 }
@@ -20,25 +15,13 @@ class TestCoverageRunner{
 	def openCoverLocation;
 	def reportGeneratorLocation;
 	def openCoverToCoberturaConverterLocaltion;
-	def excludeFilter;
 	
-    public TestCoverageRunner(def rootPath, def excludeFilter){
-        this.rootPath = rootPath;		
-		this.nunitConsoleLocation = "D:\\Jenkins\\tools\\NUnit\\nunit3-console.exe";
+    public TestCoverageRunner(def rootPath){
+        this.rootPath = rootPath;
+		this.nunitConsoleLocation = "D:\\Jenkins\\tools\\NUnit\\nunit3-console.exe";		
 		this.openCoverLocation = "D:\\Jenkins\\tools\\opencover\\OpenCover.Console.exe";
 		this.reportGeneratorLocation="D:\\Jenkins\\tools\\ReportGenerator\\ReportGenerator.exe";
 		this.openCoverToCoberturaConverterLocaltion="D:\\Jenkins\\tools\\OpenCoverToCoberturaConverter\\OpenCoverToCoberturaConverter.exe";
-		
-		this.excludeFilter = "";
-		
-		if (excludeFilter?.trim()) {
-			String[] parts = excludeFilter.split(';');
-			
-			for( String filter : parts ){
-				this.excludeFilter += " -[" + filter + "]*";
-				this.excludeFilter += " -[" + filter + ".*]*";
-			}
-		}
     }
 	
 	public getOpenCoverCommand(){
@@ -49,9 +32,7 @@ class TestCoverageRunner{
 			nunitConsoleLocation +
 			" -targetargs:\"" +
 			files +
-			" /result:\"\"" + rootPath + "\\UnitTest.xml;format=nunit2\"\" \" -filter:\"+[*]*" + 
-			excludeFilter + "\" " +
-			"-output:\"" +
+			" /result:\"\"" + rootPath + "\\UnitTest.xml;format=nunit2\"\" \" -filter:+[*]* -output:\"" +
 			rootPath +
 			"\\coverage.xml\"";
 		return openCoverCommand;
