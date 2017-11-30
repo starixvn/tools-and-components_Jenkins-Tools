@@ -2,7 +2,7 @@
 $openCoverPath = "D:\Jenkins\tools\opencover\OpenCover.Console.exe"
 $xUnitPath = "D:\Jenkins\tools\xunit.runner.console\tools\xunit.console.exe"
 $reportGeneratorPath = "D:\Jenkins\tools\ReportGenerator\ReportGenerator.exe"
-$openCoverToCoberturaPath = "D:\Jenkins\tools\OpenCover\OpenCoverToCoberturaConverter.exe"
+$openCoverToCoberturaPath = "D:\Jenkins\tools\OpenCoverToCoberturaConverter\OpenCoverToCoberturaConverter.exe"
 
 $register = '-register:user'
 $target = "-target:""$xUnitPath"""

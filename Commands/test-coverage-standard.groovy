@@ -21,7 +21,7 @@ class TestCoverageRunner{
 		this.nunitConsoleLocation = "D:\\Jenkins\\tools\\NUnit\\nunit3-console.exe";		
 		this.openCoverLocation = "D:\\Jenkins\\tools\\opencover\\OpenCover.Console.exe";
 		this.reportGeneratorLocation="D:\\Jenkins\\tools\\ReportGenerator\\ReportGenerator.exe";
-		this.openCoverToCoberturaConverterLocaltion="D:\\Jenkins\\tools\\OpenCover\\OpenCoverToCoberturaConverter.exe";
+		this.openCoverToCoberturaConverterLocaltion="D:\\Jenkins\\tools\\OpenCoverToCoberturaConverter\\OpenCoverToCoberturaConverter.exe";
     }
 	
 	public getOpenCoverCommand(){
