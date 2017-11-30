@@ -1,7 +1,7 @@
 ﻿$workspace = $args[0]
-$openCoverPath = "D:\Jenkins\tools\opencover.4.6.519\OpenCover.Console.exe"
+$openCoverPath = "D:\Jenkins\tools\opencover\OpenCover.Console.exe"
 $xUnitPath = "D:\Jenkins\tools\xunit.runner.console\tools\xunit.console.exe"
-$reportGeneratorPath = "D:\Jenkins\tools\ReportGenerator.2.1.6.0\ReportGenerator.exe"
+$reportGeneratorPath = "D:\Jenkins\tools\ReportGenerator\ReportGenerator.exe"
 $openCoverToCoberturaPath = "D:\Jenkins\tools\OpenCover\OpenCoverToCoberturaConverter.exe"
 
 $register = '-register:user'
