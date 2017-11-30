@@ -49,7 +49,7 @@ class TestCoverageRunner{
 			nunitConsoleLocation +
 			" -targetargs:\"" +
 			files +
-			"\" -filter:\"+[*]*" + 
+			" /result:\"\"" + rootPath + "\\UnitTest.xml;format=nunit2\"\" \" -filter:\"+[*]*" + 
 			excludeFilter + "\" " +
 			"-output:\"" +
 			rootPath +
