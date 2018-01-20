@@ -20,7 +20,6 @@
 	<Property Name="sonar.host.url">http://sonarqube.nexdev.net</Property>
 
 	<Property Name="sonar.login">4117f4e2d085a8736d943604e565eb83f905d016</Property>
-	
   <!--
   <Property Name="sonar.host.url">http://localhost:9000</Property>
 
