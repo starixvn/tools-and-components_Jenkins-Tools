@@ -4,6 +4,12 @@ $xUnitPath = "D:\Jenkins\tools\xunit.runner.console\tools\xunit.console.exe"
 $reportGeneratorPath = "D:\Jenkins\tools\ReportGenerator\ReportGenerator.exe"
 $openCoverToCoberturaPath = "D:\Jenkins\tools\OpenCoverToCoberturaConverter\OpenCoverToCoberturaConverter.exe"
 
+if($args.Count -eq 2){
+    if( $args[1] -eq "x86"){
+        $xUnitPath = "D:\Jenkins\tools\xunit.runner.console\tools\xunit.console.x86.exe"
+    }
+}
+
 $register = '-register:user'
 $target = "-target:""$xUnitPath"""
 $targetargs = ""
