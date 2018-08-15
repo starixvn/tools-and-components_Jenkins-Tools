@@ -23,10 +23,9 @@
             <PackageSource Include="https://www.nuget.org/api/v2/" />
             <PackageSource Include="https://my-nuget-source/nuget/" />
         -->
-    <PackageSource Include="https://www.nuget.org/api/v2/" />
-	 <PackageSource Include="http://nuget.owdev.net/api/v2/" />
-	 <PackageSource Include="http://10.80.80.80/api/v2/" />
-	 <PackageSource Include="http://nuget.nexdev.net/api/v2/" />
+    <PackageSource Include="http://nuget.nexdev.net/api/v2/" />
+	<PackageSource Include="https://www.nuget.org/api/v2/" />
+	<PackageSource Include="http://nuget.owdev.net/api/v2/" />
   </ItemGroup>
 
   <PropertyGroup Condition=" '$(OS)' == 'Windows_NT'">
