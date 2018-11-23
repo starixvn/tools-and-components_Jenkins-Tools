@@ -16,3 +16,5 @@ Export-OpenXml $result "$workspace\SQLCoverage"
 
 # Convert to html reports
 Start-ReportGenerator "$workspace\SQLCoverage" "$reportGeneratorPath"
+
+exit $LastExitCode
