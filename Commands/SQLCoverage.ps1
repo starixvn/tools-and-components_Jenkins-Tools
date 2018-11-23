@@ -8,6 +8,8 @@ $database = $args[2]
 $sqlCoverPath = "D:\Jenkins\tools\SQLCover\SQLCover.dll"
 $reportGeneratorPath = "D:\Jenkins\tools\ReportGenerator\ReportGenerator.exe"
 $sqlCoverageReport = "$workspace\SQLCoverage"
+$getTestResultPath = "D:\jenkins\tools\tSQLt\tSQLt_TestResults.sql"
+$testResultReportPath = "$workspace\SQLTestResults.xml"
 
 # Create folder if not exist
 if( -Not (Test-Path -Path $sqlCoverageReport ) )
@@ -24,5 +26,8 @@ Export-OpenXml $result "$sqlCoverageReport"
 
 # Convert to html reports
 Start-ReportGenerator "$sqlCoverageReport" "$reportGeneratorPath"
+
+# Generate Test Results
+sqlcmd -E -S $dataSource -d $database -y0 -I -i "$getTestResultPath" -o "$testResultReportPath"
 
 exit $LastExitCode
