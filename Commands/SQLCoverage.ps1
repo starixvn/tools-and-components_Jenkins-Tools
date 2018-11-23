@@ -7,14 +7,22 @@ $dataSource = $args[1]
 $database = $args[2]
 $sqlCoverPath = "D:\Jenkins\tools\SQLCover\SQLCover.dll"
 $reportGeneratorPath = "D:\Jenkins\tools\ReportGenerator\ReportGenerator.exe"
+$sqlCoverageReport = "$workspace\SQLCoverage"
+
+# Create folder if not exist
+if( -Not (Test-Path -Path $sqlCoverageReport ) )
+{
+    New-Item -ItemType directory -Path $sqlCoverageReport
+}
+
 
 # Run tSQLt tests
 $result = Get-CoverTSql "$sqlCoverPath" "server=$dataSource;integrated security=sspi;initial catalog=$database" "$database" "EXEC tSQLt.RunAll"
 
 # Export OpenCover reports
-Export-OpenXml $result "$workspace\SQLCoverage"
+Export-OpenXml $result "$sqlCoverageReport"
 
 # Convert to html reports
-Start-ReportGenerator "$workspace\SQLCoverage" "$reportGeneratorPath"
+Start-ReportGenerator "$sqlCoverageReport" "$reportGeneratorPath"
 
 exit $LastExitCode
