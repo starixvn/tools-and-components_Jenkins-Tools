@@ -5,11 +5,14 @@
 $workspace = $args[0]
 $dataSource = $args[1]
 $database = $args[2]
+
 $sqlCoverPath = "D:\Jenkins\tools\SQLCover\SQLCover.dll"
 $reportGeneratorPath = "D:\Jenkins\tools\ReportGenerator\ReportGenerator.exe"
 $sqlCoverageReport = "$workspace\SQLCoverage"
+
 $getTestResultPath = "D:\jenkins\tools\tSQLt\tSQLt_TestResults.sql"
 $testResultReportPath = "$workspace\SQLTestResults.xml"
+$testResultGeneratorCmd = "& sqlcmd -E -S $dataSource -d $database -y0 -I -i ""$getTestResultPath"" -o ""$testResultReportPath"""
 
 # Create folder if not exist
 if( -Not (Test-Path -Path $sqlCoverageReport ) )
@@ -28,6 +31,9 @@ Export-OpenXml $result "$sqlCoverageReport"
 Start-ReportGenerator "$sqlCoverageReport" "$reportGeneratorPath"
 
 # Generate Test Results
-sqlcmd -E -S $dataSource -d $database -y0 -I -i "$getTestResultPath" -o "$testResultReportPath"
+Write-Host "Generate SQL test result"
+Write-Host $testResultGeneratorCmd
+
+Invoke-Expression $testResultGeneratorCmd
 
 exit $LastExitCode
