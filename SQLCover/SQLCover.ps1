@@ -16,7 +16,7 @@ function Get-CoverTSql{
     Add-Type -Path $coverDllPath
     
     $coverage = new-object SQLCover.CodeCoverage ($connectionString, $databaseName, $null, $true)
-	$coverage.Cover($query)
+	$coverage.Cover($query,300)
   
 }
 
