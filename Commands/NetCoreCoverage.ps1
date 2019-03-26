@@ -23,7 +23,7 @@ if($testProjectList.Count -ne 0){
         $unitTestResultPath = "$workspace\TestResults\$testProjectName-UnitTest.trx"
         $coverageReportPath = "$workspace\CoverageReports\$testProjectName-Coverage.xml"
 
-        $generateCoverageCmd = "& coverlet ""$testDllPath"" --target dotnet --targetargs ""test """"""""$($testProject.Value)"""""""" --no-build --logger """"""""trx;LogFileName=$unitTestResultPath"""""""""" --format opencover --output ""$coverageReportPath"""
+        $generateCoverageCmd = "& coverlet ""$testDllPath"" --target dotnet --targetargs ""test """"""""$($testProject.Value)"""""""" --no-build --logger """"""""trx;LogFileName=$unitTestResultPath"""""""""" --format opencover --output ""$coverageReportPath"" --exclude=[xunit.*]*"
         
         Write-Host $generateCoverageCmd
         Invoke-Expression $generateCoverageCmd
