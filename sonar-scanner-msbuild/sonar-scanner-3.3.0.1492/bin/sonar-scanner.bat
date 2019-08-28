@@ -1,10 +1,10 @@
-@REM SonarQube Runner Startup Script for Windows
+@REM SonarQube Scanner Startup Script for Windows
 @REM
 @REM Required ENV vars:
 @REM   JAVA_HOME - location of a JDK home dir
 @REM
 @REM Optional ENV vars:
-@REM   SONAR_RUNNER_OPTS - parameters passed to the Java VM when running Sonar
+@REM   SONAR_SCANNER_OPTS - parameters passed to the Java VM when running the SonarQube Scanner
 
 @echo off
 
@@ -13,10 +13,18 @@ set ERROR_CODE=0
 @REM set local scope for the variables with windows NT shell
 @setlocal
 
-echo WARN: sonar-runner.bat script is deprecated. Please use sonar-scanner.bat instead.
+set "scriptdir=%~dp0"
+if #%scriptdir:~-1%# == #\# set scriptdir=%scriptdir:~0,-1%
+set "SONAR_SCANNER_HOME=%scriptdir%\.."
 
 @REM ==== START VALIDATION ====
 @REM *** JAVA EXEC VALIDATION ***
+
+set use_embedded_jre=false
+if "%use_embedded_jre%" == "true" (
+  set "JAVA_HOME=%SONAR_SCANNER_HOME%\jre"
+)
+
 if not "%JAVA_HOME%" == "" goto foundJavaHome
 
 for %%i in (java.exe) do set JAVA_EXEC=%%~$PATH:i
@@ -49,24 +57,18 @@ goto error
 set JAVA_EXEC="%JAVA_HOME%\bin\java.exe"
 
 :OkJava
-set SONAR_RUNNER_HOME=%~dp0..
-goto sonarRunnerOpts
+goto run
 
-@REM ==== HANDLE DEPRECATED SONAR_RUNNER_OPTS ====
-:sonarRunnerOpts
-if "%SONAR_RUNNER_OPTS%" == "" (
-  goto run
-) else (
-  echo WARN: SONAR_RUNNER_OPTS is deprecated. Please use SONAR_SCANNER_OPTS instead.
-  if "%SONAR_SCANNER_OPTS%" == "" (set SONAR_SCANNER_OPTS=%SONAR_RUNNER_OPTS%)
-) 
 
 @REM ==== START RUN ====
 :run
 
 set PROJECT_HOME=%CD%
 
-%JAVA_EXEC% -Djava.awt.headless=true %SONAR_SCANNER_OPTS% -cp "%SONAR_RUNNER_HOME%\lib\sonar-scanner-cli-3.0.3.778.jar" "-Dscanner.home=%SONAR_RUNNER_HOME%" "-Dproject.home=%PROJECT_HOME%" org.sonarsource.scanner.cli.Main %*
+@REM remove trailing backslash, see https://groups.google.com/d/msg/sonarqube/wi7u-CyV_tc/3u9UKRmABQAJ
+IF %PROJECT_HOME:~-1% == \ SET PROJECT_HOME=%PROJECT_HOME:~0,-1%
+
+%JAVA_EXEC% -Djava.awt.headless=true %SONAR_SCANNER_DEBUG_OPTS% %SONAR_SCANNER_OPTS% -cp "%SONAR_SCANNER_HOME%\lib\sonar-scanner-cli-3.3.0.1492.jar" "-Dscanner.home=%SONAR_SCANNER_HOME%" "-Dproject.home=%PROJECT_HOME%" org.sonarsource.scanner.cli.Main %*
 if ERRORLEVEL 1 goto error
 goto end
 
