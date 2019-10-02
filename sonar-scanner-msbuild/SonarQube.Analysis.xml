@@ -17,7 +17,7 @@
 
 -->
 <SonarQubeAnalysisProperties  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sonarsource.com/msbuild/integration/2015/1">
-	<Property Name="sonar.host.url">http://sonarqube.nexdev.net</Property>
+	<Property Name="sonar.host.url">https://sonarqube.nexdev.net</Property>
 
 	<Property Name="sonar.login">4117f4e2d085a8736d943604e565eb83f905d016</Property>
 	<Property Name="sonar.msbuild.testProjectPattern">[^\\]*test[^\\]*$</Property>
