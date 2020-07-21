@@ -7,7 +7,7 @@
   "targets": {
     ".NETCoreApp,Version=v2.1": {},
     ".NETCoreApp,Version=v2.1/win-x64": {
-      "Fanex.Rocketor.PublishAgent/1.0.0": {
+      "Fanex.Rocketor.Publish/1.0.0": {
         "dependencies": {
           "EasyNetQ": "5.2.0",
           "Microsoft.Extensions.Configuration.Binder": "2.1.1",
@@ -20,7 +20,7 @@
           "System.Net.Http": "4.3.4"
         },
         "runtime": {
-          "Fanex.Rocketor.PublishAgent.dll": {}
+          "Fanex.Rocketor.Publish.dll": {}
         }
       },
       "EasyNetQ/5.2.0": {
@@ -1442,7 +1442,7 @@
     }
   },
   "libraries": {
-    "Fanex.Rocketor.PublishAgent/1.0.0": {
+    "Fanex.Rocketor.Publish/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
