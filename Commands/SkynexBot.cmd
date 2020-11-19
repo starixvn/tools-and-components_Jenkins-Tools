@@ -1,4 +1,4 @@
-ECHO ON
+ECHO OFF
 SET ConversationId=%1
 SET Message=%2
 
