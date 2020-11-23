@@ -10,7 +10,7 @@ if($args.Count -eq 2){
     }
 }
 
-$register = '-register:user'
+$register = '-register:Path64'
 $target = "-target:""$xUnitPath"""
 $targetargs = ""
 $reportFile = "coverage.xml"
