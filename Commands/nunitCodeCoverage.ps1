@@ -4,7 +4,7 @@ $nunitPath = "D:\Jenkins\tools\NUnit\nunit3-console.exe"
 $reportGeneratorPath = "D:\Jenkins\tools\ReportGenerator\ReportGenerator.exe"
 $openCoverToCoberturaPath = "D:\Jenkins\tools\OpenCoverToCoberturaConverter\OpenCoverToCoberturaConverter.exe"
 
-$register = '-register:user'
+$register = '-register:Path64'
 $target = "-target:""$nunitPath"""
 $targetargs = ""
 $reportFile = "coverage.xml"
