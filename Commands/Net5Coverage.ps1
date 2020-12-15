@@ -29,8 +29,8 @@ if($testProjectList.Count -ne 0){
         Write-Host $generateCoverageCmd
         Invoke-Expression $generateCoverageCmd
         Write-Host
-        
-        $convertToSonarQubeReport = "& reportgenerator \`"-reports:$coverageReportDir\*.xml\`" \`"-targetdir:$coverageReportDir\SonarQube\`" -reporttypes:SonarQube"
+       
+        $convertToSonarQubeReport = "& reportgenerator `"-reports:$coverageReportDir\*.xml`" `"-targetdir:$coverageReportDir\SonarQube`" -reporttypes:SonarQube"
         Write-Host $convertToSonarQubeReport
         Invoke-Expression $convertToSonarQubeReport
         Write-Host
