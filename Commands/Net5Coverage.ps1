@@ -16,24 +16,21 @@ if($testProjectList.Count -ne 0){
     foreach($testProject in $testProjectList.GetEnumerator()){
         Write-Host $testProject.Value
 
-        $testProjectName = [System.IO.Path]::GetFileNameWithoutExtension($testProject.Value)
-        $testDllName = "$testProjectName.dll"
-        $testProjectFolder = [System.IO.Path]::GetDirectoryName($testProject.Value)
-        $testDllPath = Get-ChildItem -Path "$testProjectFolder\*" -Include $testDllName -Recurse | Select -ExpandProperty FullName -First 1
+        $testProjectName = [System.IO.Path]::GetFileNameWithoutExtension($testProject.Value)        
         $unitTestResultPath = "$workspace\TestResults\$testProjectName-UnitTest.trx"
         $coverageReportDir = "$workspace\CoverageReports"
         $coverageReportPath = "$coverageReportDir\$testProjectName-Coverage.xml"
+        $installCoverletMsBuild = "& dotnet add `"$($testProject.Value)`" package coverlet.msbuild"
 
-        $generateCoverageCmd = "& coverlet ""$testDllPath"" --target dotnet --targetargs ""test """"""""$($testProject.Value)"""""""" --no-build --logger """"""""trx;LogFileName=$unitTestResultPath"""""""""" --format cobertura --output ""$coverageReportPath"" --exclude=[xunit.*]*"
+        Write-Host $installCoverletMsBuild
+        Invoke-Expression $installCoverletMsBuild
+        Write-Host
+
+        $generateCoverageCmd = "& dotnet test `"$($testProject.Value)`" --no-build --logger `"trx;LogFileName=$unitTestResultPath`" /p:Exclude=[xunit.*]* /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=`"$coverageReportPath`""
         
         Write-Host $generateCoverageCmd
         Invoke-Expression $generateCoverageCmd
-        Write-Host
-       
-        $convertToSonarQubeReport = "& reportgenerator `"-reports:$coverageReportDir\*.xml`" `"-targetdir:$coverageReportDir\SonarQube`" -reporttypes:SonarQube"
-        Write-Host $convertToSonarQubeReport
-        Invoke-Expression $convertToSonarQubeReport
-        Write-Host
+        Write-Host       
     }
 }else{
     Write-Warning "The test projects with the ""*Tests.csproj"" pattern were not found."
