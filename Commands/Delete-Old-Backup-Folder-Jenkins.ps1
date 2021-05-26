@@ -1,4 +1,4 @@
-﻿$rootFolder = "\\fileserver\bk_nexcel\1-WINDOWS_SERVER\Web_Servers\Server104\JenkinsBackup"
+﻿$rootFolder = "\\fileserver\bk_nexcel\SRV117\Jenkins"
 $backupFolders = dir -Directory $rootFolder | Sort-Object -Descending Name
 
 for($i=0;$i -lt $backupFolders.Count;$i++){
