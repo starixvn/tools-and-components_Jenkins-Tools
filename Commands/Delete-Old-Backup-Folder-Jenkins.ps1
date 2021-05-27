@@ -2,8 +2,8 @@
 $backupFolders = dir -Directory $rootFolder | Sort-Object -Descending Name
 
 for($i=0;$i -lt $backupFolders.Count;$i++){
-    #Keep 3 latest backup folders
-    if($i -gt 2){
+    #Keep 2 latest backup folders
+    if($i -gt 1){
         $backupFolder = "$rootFolder\$($backupFolders[$i])"
 
         Write-Host "Delete $backupFolder"
